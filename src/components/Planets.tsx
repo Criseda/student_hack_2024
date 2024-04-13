@@ -32,20 +32,15 @@ function Planet({ planet, index }: PlanetProps & { index: number }) {
     triggerOnce: true,
   });
 
-  const [key, setKey] = useState(Math.random());
   const [initialX, setInitialX] = useState(0);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      setInitialX(
-        index % 2 === 0 ? -window.innerWidth / 2 : window.innerWidth / 2
-      );
+      setInitialX(window.innerWidth - 200);
     }
 
     const handleResize = () => {
-      setInitialX(
-        index % 2 === 0 ? -window.innerWidth / 2 : window.innerWidth / 2
-      );
+      setInitialX(window.innerWidth - 200);
     };
 
     window.addEventListener("resize", handleResize);
@@ -56,7 +51,7 @@ function Planet({ planet, index }: PlanetProps & { index: number }) {
   }, [index]);
 
   return (
-    <Link href={`/${planet.name}`} passHref key={key}>
+    <Link href={`/${planet.name}`}>
       <motion.div
         ref={ref}
         initial={{ opacity: 0, x: initialX }}
@@ -76,7 +71,7 @@ function Planet({ planet, index }: PlanetProps & { index: number }) {
 
 export default function Planets() {
   return (
-    <div className="h-auto w-screen flex justify-center items-center">
+    <div className="h-auto w-screen flex justify-start items-center overflow-hidden">
       <div className="flex flex-col items-center space-y-20 pt-5">
         {planets.map((planet, index) => (
           <div className="h-screen flex items-center" key={planet.name}>
