@@ -11,11 +11,10 @@ export default function Home() {
   return (
     <>
       <div className="relative w-screen overflow-hidden">
-        <Navbar />
-        <HomePage />
-        <Planets />
+          <Navbar />
+          <HomePage />
+          <Planets />
       </div>
-      
     </>
   );
 }
