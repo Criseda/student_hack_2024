@@ -1,5 +1,8 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const planets = [
   { name: "sun", scale: 3, fileType: "svg" },
@@ -15,19 +18,48 @@ const planets = [
 
 const baseSize = 100;
 
+type PlanetProps = {
+  planet: {
+    name: string;
+    scale: number;
+    fileType: string;
+  };
+};
+
+function Planet({ planet, index }: PlanetProps & { index: number }) {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+  });
+
+  const initialX = index % 2 === 0 ? -500 : 500;
+
+  return (
+    <Link href={`/${planet.name}`} passHref>
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, x: initialX }} // start from the left or right
+        animate={{ opacity: inView ? 1 : 0, x: inView ? 0 : initialX }} // move to the center
+        transition={{ duration: 1 }}
+      >
+        <Image
+          src={`/images/${planet.name}.${planet.fileType}`}
+          alt={planet.name}
+          width={baseSize * planet.scale}
+          height={baseSize * planet.scale}
+        />
+      </motion.div>
+    </Link>
+  );
+}
+
 export default function Planets() {
   return (
-    <div className="flex flex-col items-center space-y-20 pt-5">
-      {planets.map((planet) => (
-        <Link href={`/${planet.name}`} key={planet.name} passHref>
-          <Image
-            src={`/images/${planet.name}.${planet.fileType}`}
-            alt={planet.name}
-            width={baseSize * planet.scale}
-            height={baseSize * planet.scale}
-          />
-        </Link>
-      ))}
+    <div className="h-auto w-screen flex justify-center items-center">
+      <div className="flex flex-col items-center space-y-20 pt-5">
+        {planets.map((planet, index) => (
+          <Planet key={planet.name} planet={planet} index={index}/>
+        ))}
+      </div>
     </div>
   );
 }
