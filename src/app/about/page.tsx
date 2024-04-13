@@ -2,6 +2,7 @@ import { AboutPage } from "@/components/AboutPage";
 import AboutNavBar from "@/components/AboutNavBar";
 
 
+
 export default function About() {
   return (
     <div className="relative w-full">
@@ -11,3 +12,4 @@ export default function About() {
     </div>
   );
 }
+
