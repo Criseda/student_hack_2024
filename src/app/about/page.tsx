@@ -1,15 +1,15 @@
 import { AboutPage } from "@/components/AboutPage";
 import AboutNavBar from "@/components/AboutNavBar";
-
+import { AboutAccordion } from "@/components/AboutAccordion";
 
 
 export default function About() {
   return (
-    <div className="relative w-full">
+    <div>
       <AboutPage />
+      <AboutAccordion />
       <AboutNavBar />
-      <p>filler to create scroll on the right</p>
     </div>
-  );
+     );
 }
 
