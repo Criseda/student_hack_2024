@@ -1,10 +1,5 @@
-import Image from "next/image";
-import { HomePage } from "@/components/HomePage";
+import { redirect } from "next/navigation";
 
 export default function Home() {
-  return (
-    <>
-      <HomePage />
-    </>
-  );
+  return redirect("/home");
 }
