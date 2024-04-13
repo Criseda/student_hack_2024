@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -31,14 +32,35 @@ function Planet({ planet, index }: PlanetProps & { index: number }) {
     triggerOnce: true,
   });
 
-  const initialX = index % 2 === 0 ? -500 : 500;
+  const [key, setKey] = useState(Math.random());
+  const [initialX, setInitialX] = useState(0);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setInitialX(
+        index % 2 === 0 ? -window.innerWidth / 2 : window.innerWidth / 2
+      );
+    }
+
+    const handleResize = () => {
+      setInitialX(
+        index % 2 === 0 ? -window.innerWidth / 2 : window.innerWidth / 2
+      );
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [index]);
 
   return (
-    <Link href={`/${planet.name}`} passHref>
+    <Link href={`/${planet.name}`} passHref key={key}>
       <motion.div
         ref={ref}
-        initial={{ opacity: 0, x: initialX }} // start from the left or right
-        animate={{ opacity: inView ? 1 : 0, x: inView ? 0 : initialX }} // move to the center
+        initial={{ opacity: 0, x: initialX }}
+        animate={{ opacity: inView ? 1 : 0, x: inView ? 0 : initialX }}
         transition={{ duration: 1 }}
       >
         <Image
@@ -57,7 +79,9 @@ export default function Planets() {
     <div className="h-auto w-screen flex justify-center items-center">
       <div className="flex flex-col items-center space-y-20 pt-5">
         {planets.map((planet, index) => (
-          <Planet key={planet.name} planet={planet} index={index}/>
+          <div className="h-screen flex items-center" key={planet.name}>
+            <Planet planet={planet} index={index} />
+          </div>
         ))}
       </div>
     </div>
