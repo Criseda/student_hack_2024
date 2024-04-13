@@ -4,17 +4,18 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { Meteors } from "@/components/ui/meteors"
 
 const planets = [
-  { name: "sun", scale: 3, fileType: "svg" },
-  { name: "mercury", scale: 0.7, fileType: "png" },
-  { name: "venus", scale: 0.96, fileType: "svg" },
-  { name: "earth", scale: 1, fileType: "svg" },
-  { name: "mars", scale: 0.8, fileType: "svg" },
-  { name: "jupiter", scale: 2, fileType: "svg" },
-  { name: "saturn", scale: 1.5, fileType: "svg" },
-  { name: "uranus", scale: 1.25, fileType: "svg" },
-  { name: "neptune", scale: 1.2, fileType: "svg" },
+  { name: "sun", scale: 3, fileType: "svg", info: "The sun is something"},
+  { name: "mercury", scale: 0.7, fileType: "png" , info: "Mercury is something"},
+  { name: "venus", scale: 0.96, fileType: "svg", info: "Venus sun is something" },
+  { name: "earth", scale: 1, fileType: "svg", info: "Earth sun is something" },
+  { name: "mars", scale: 0.8, fileType: "svg", info: "Mars sun is something" },
+  { name: "jupiter", scale: 2, fileType: "svg", info: "Jupiter sun is something" },
+  { name: "saturn", scale: 1.5, fileType: "svg", info: "Saturn sun is something" },
+  { name: "uranus", scale: 1.25, fileType: "svg", info: "Uranus sun is something" },
+  { name: "neptune", scale: 1.2, fileType: "svg" , info: "Neptune sun is something"},
 ];
 
 const baseSize = 100;
@@ -26,6 +27,7 @@ type PlanetProps = {
     fileType: string;
   };
 };
+
 
 function Planet({ planet, index }: PlanetProps & { index: number }) {
   const [ref, inView] = useInView({
