@@ -1,16 +1,14 @@
 import Image from "next/image";
 import { HomePage } from "@/components/HomePage";
-import { Suspense } from "react";
-import Loading  from "./loading";
-
+import Navbar from "@/components/Navbar";
 
 export default function Home() {
   return (
-  <Suspense fallback={<Loading />}>
-    <>
+    <div className="relative w-full">
+      <Navbar />
       <HomePage />
-    </>
-  </Suspense>
+      <p>filler to create scroll on the right</p>
+    </div>
   );
 
 }
