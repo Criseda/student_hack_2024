@@ -254,7 +254,7 @@ export function VenusQuiz() {
               </RadioGroupItem>
             </div>
 
-            <p className="font-bold mb-2">3. What is Venus's color?</p>
+            <p className="font-bold mb-2">3. What is Venus&apos;s color?</p>
             <div className="mb-1">
               <RadioGroupItem value="yellow" id="r6">
                 <Label htmlFor="r6">A. Yellow</Label>
@@ -296,7 +296,7 @@ export function EarthQuiz() {
         </DialogHeader>
         <DialogDescription className="text-lg">
           <p className="mb-4">
-            Let's learn about Earth! Choose the best answer for each question.
+            Let&apos;s learn about Earth! Choose the best answer for each question.
           </p>
           <RadioGroup name="earthQuiz">
             <p className="font-bold mb-2">1. How many continents are there on Earth?</p>
@@ -328,7 +328,7 @@ export function EarthQuiz() {
               </RadioGroupItem>
             </div>
 
-            <p className="font-bold mb-2">3. Which animal is known as the 'King of the Jungle'?</p>
+            <p className="font-bold mb-2">3. Which animal is known as the &apos;King of the Jungle&apos;?</p>
             <div className="mb-1">
               <RadioGroupItem value="lion" id="r6">
                 <Label htmlFor="r6">A. Lion</Label>
@@ -703,7 +703,7 @@ export function NeptuneQuiz() {
               </RadioGroupItem>
             </div>
 
-            <p className="font-bold mb-2">3. What is Neptune's color?</p>
+            <p className="font-bold mb-2">3. What is Neptune&apos;s color?</p>
             <div className="mb-1">
               <RadioGroupItem value="blue" id="r6">
                 <Label htmlFor="r6">A. Blue</Label>
