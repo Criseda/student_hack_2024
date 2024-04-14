@@ -10,14 +10,14 @@ import { SunQuiz } from "@/components/Quizes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
-import {MercuryQuiz} from "@/components/Quizes";
-import {VenusQuiz} from "@/components/Quizes";
-import {EarthQuiz} from "@/components/Quizes";
-import {MarsQuiz} from "@/components/Quizes";
-import {JupiterQuiz} from "@/components/Quizes";
-import {SaturnQuiz} from "@/components/Quizes";
-import {UranusQuiz} from "@/components/Quizes";
-import {NeptuneQuiz} from "@/components/Quizes";
+import { MercuryQuiz } from "@/components/Quizes";
+import { VenusQuiz } from "@/components/Quizes";
+import { EarthQuiz } from "@/components/Quizes";
+import { MarsQuiz } from "@/components/Quizes";
+import { JupiterQuiz } from "@/components/Quizes";
+import { SaturnQuiz } from "@/components/Quizes";
+import { UranusQuiz } from "@/components/Quizes";
+import { NeptuneQuiz } from "@/components/Quizes";
 
 const planets = [
   { name: "sun", scale: 4, fileType: "svg", info: "The sun is something" },
@@ -153,15 +153,15 @@ function Info({ planetsInfo, index }: PlanetsInfo & { index: number }) {
     triggerOnce: false,
   });
 
-  const [quizPassed, setQuizPassed] = useState(false);
+  const [quizResults, setQuizResults] = useState({});
   const [initialX, setInitialX] = useState(0);
 
-  const handleQuizResult = (isPassed: boolean) => {
-    setQuizPassed(isPassed);
+  const handleQuizResult = (planetName: string, isPassed: boolean) => {
+    setQuizResults((prevState) => ({ ...prevState, [planetName]: isPassed }));
     if (isPassed) {
-      console.log("Congratulations! You passed the quiz.");
+      console.log(`Congratulations! You passed the ${planetName} quiz.`);
     } else {
-      console.log("Sorry, you didn't pass the quiz. Try again!");
+      console.log(`Sorry, you didn't pass the ${planetName} quiz. Try again!`);
     }
   };
 
@@ -181,32 +181,67 @@ function Info({ planetsInfo, index }: PlanetsInfo & { index: number }) {
     };
   }, [index]);
 
-   // Function to render the correct quiz component based on the planet name
+  // Function to render the correct quiz component based on the planet name
   const renderQuizComponent = (planetName: string) => {
     switch (planetName.toLowerCase()) {
       case "sun":
-        return <SunQuiz />;
+        return (
+          <SunQuiz
+            onQuizResult={(isPassed) => handleQuizResult("sun", isPassed)}
+          />
+        );
       case "mercury":
-        return <MercuryQuiz />;
+        return (
+          <MercuryQuiz
+            onQuizResult={(isPassed) => handleQuizResult("mercury", isPassed)}
+          />
+        );
       case "venus":
-        return <VenusQuiz />;
+        return (
+          <VenusQuiz
+            onQuizResult={(isPassed) => handleQuizResult("venus", isPassed)}
+          />
+        );
       case "earth":
-        return <EarthQuiz />;
+        return (
+          <EarthQuiz
+            onQuizResult={(isPassed) => handleQuizResult("earth", isPassed)}
+          />
+        );
       case "mars":
-        return <MarsQuiz />;
+        return (
+          <MarsQuiz
+            onQuizResult={(isPassed) => handleQuizResult("mars", isPassed)}
+          />
+        );
       case "jupiter":
-        return <JupiterQuiz />;
+        return (
+          <JupiterQuiz
+            onQuizResult={(isPassed) => handleQuizResult("jupiter", isPassed)}
+          />
+        );
       case "saturn":
-        return <SaturnQuiz />;
+        return (
+          <SaturnQuiz
+            onQuizResult={(isPassed) => handleQuizResult("saturn", isPassed)}
+          />
+        );
       case "uranus":
-        return <UranusQuiz />;
+        return (
+          <UranusQuiz
+            onQuizResult={(isPassed) => handleQuizResult("uranus", isPassed)}
+          />
+        );
       case "neptune":
-        return <NeptuneQuiz />;
+        return (
+          <NeptuneQuiz
+            onQuizResult={(isPassed) => handleQuizResult("neptune", isPassed)}
+          />
+        );
       default:
         return null; // Handle case when no matching planet name is found
     }
   };
-
 
   return (
     <motion.div
@@ -224,8 +259,13 @@ function Info({ planetsInfo, index }: PlanetsInfo & { index: number }) {
         <p className="font-normal text-base text-slate-500 mb-4 relative z-50">
           {planetsInfo.info}
         </p>
-         
+        <div className="flex items-center"></div>
         {renderQuizComponent(planetsInfo.name)}
+        {quizResults[planetsInfo.name] ? (
+          <FontAwesomeIcon icon={faCheckCircle} size="xl" className="pl-3" />
+        ) : (
+          <FontAwesomeIcon icon={faCircleXmark} size="xl" className="pl-3" />
+        )}
         <Meteors number={20} />
       </div>
     </motion.div>
