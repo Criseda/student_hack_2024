@@ -153,11 +153,12 @@ function Info({ planetsInfo, index }: PlanetsInfo & { index: number }) {
     triggerOnce: false,
   });
 
-  const [quizResults, setQuizResults] = useState({});
+  const [quizResults, setQuizResults] = useState<Record<string, boolean>>({});
   const [initialX, setInitialX] = useState(0);
 
   const handleQuizResult = (planetName: string, isPassed: boolean) => {
     setQuizResults((prevState) => ({ ...prevState, [planetName]: isPassed }));
+    console.log(quizResults);
     if (isPassed) {
       console.log(`Congratulations! You passed the ${planetName} quiz.`);
     } else {
@@ -259,13 +260,24 @@ function Info({ planetsInfo, index }: PlanetsInfo & { index: number }) {
         <p className="font-normal text-base text-slate-500 mb-4 relative z-50">
           {planetsInfo.info}
         </p>
-        <div className="flex items-center"></div>
-        {renderQuizComponent(planetsInfo.name)}
-        {quizResults[planetsInfo.name] ? (
-          <FontAwesomeIcon icon={faCheckCircle} size="xl" className="pl-3" />
-        ) : (
-          <FontAwesomeIcon icon={faCircleXmark} size="xl" className="pl-3" />
-        )}
+        <div className="flex items-center">
+          {renderQuizComponent(planetsInfo.name)}
+          {quizResults[planetsInfo.name.toLowerCase()] !== undefined &&
+            (quizResults[planetsInfo.name.toLowerCase()] ? (
+              <FontAwesomeIcon
+                icon={faCheckCircle}
+                size="xl"
+                className="pl-3"
+              />
+            ) : (
+              <FontAwesomeIcon
+                icon={faCircleXmark}
+                size="xl"
+                className="pl-3"
+              />
+            ))}
+        </div>
+
         <Meteors number={20} />
       </div>
     </motion.div>
