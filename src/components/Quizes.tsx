@@ -109,6 +109,7 @@ export function SunQuiz({
               </RadioGroupItem>
             </div>
           </RadioGroup>
+
         </DialogDescription>
         <DialogFooter>
           <Button
@@ -224,7 +225,8 @@ export function VenusQuiz() {
             Let&apos;s delve into Venus! Choose the best answer for each
             question.
           </p>
-          <RadioGroup name="venusQuiz">
+          
+          <RadioGroup name="venusQuiz1">
             <p className="font-bold mb-2">1. What is Venus known for?</p>
             <div className="mb-1">
               <RadioGroupItem value="hot" id="r1">
@@ -241,7 +243,9 @@ export function VenusQuiz() {
                 <Label htmlFor="r3">C. Having moons</Label>
               </RadioGroupItem>
             </div>
+          </RadioGroup>
 
+          <RadioGroup name="venusQuiz2">
             <p className="font-bold mb-2">2. Which planet is Venus from the Sun?</p>
             <div className="mb-1">
               <RadioGroupItem value="second" id="r4">
@@ -253,7 +257,9 @@ export function VenusQuiz() {
                 <Label htmlFor="r5">B. Third</Label>
               </RadioGroupItem>
             </div>
+          </RadioGroup>
 
+          <RadioGroup name="venusQuiz3">
             <p className="font-bold mb-2">3. What is Venus&apos;s color?</p>
             <div className="mb-1">
               <RadioGroupItem value="yellow" id="r6">
@@ -266,6 +272,7 @@ export function VenusQuiz() {
               </RadioGroupItem>
             </div>
           </RadioGroup>
+
         </DialogDescription>
         <DialogFooter>
           <Button variant={"secondary"} className="bg-red-500 text-white">
