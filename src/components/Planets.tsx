@@ -7,6 +7,9 @@ import { useInView } from "react-intersection-observer";
 import { Element } from "react-scroll";
 import { Meteors } from "@/components/ui/meteors";
 import { SunQuiz } from "@/components/Quizes";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
 const planets = [
   { name: "sun", scale: 4, fileType: "svg", info: "The sun is something" },
@@ -142,7 +145,17 @@ function Info({ planetsInfo, index }: PlanetsInfo & { index: number }) {
     triggerOnce: false,
   });
 
+  const [quizPassed, setQuizPassed] = useState(false);
   const [initialX, setInitialX] = useState(0);
+
+  const handleQuizResult = (isPassed: boolean) => {
+    setQuizPassed(isPassed);
+    if (isPassed) {
+      console.log("Congratulations! You passed the quiz.");
+    } else {
+      console.log("Sorry, you didn't pass the quiz. Try again!");
+    }
+  };
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -176,7 +189,14 @@ function Info({ planetsInfo, index }: PlanetsInfo & { index: number }) {
         <p className="font-normal text-base text-slate-500 mb-4 relative z-50">
           {planetsInfo.info}
         </p>
-        <SunQuiz />
+        <div className="flex items-center">
+          <SunQuiz onQuizResult={handleQuizResult} />
+          {quizPassed ? (
+            <FontAwesomeIcon icon={faCheckCircle} size="xl" className="pl-3" />
+          ) : (
+            <FontAwesomeIcon icon={faCircleXmark} size="xl" className="pl-3" />
+          )}
+        </div>
         <Meteors number={20} />
       </div>
     </motion.div>
