@@ -7,18 +7,38 @@ import { useInView } from "react-intersection-observer";
 import { Meteors } from "@/components/ui/meteors"
 
 const planets = [
-  { name: "sun", scale: 3, fileType: "svg", info: "The sun is something"},
-  { name: "mercury", scale: 0.7, fileType: "png" , info: "Mercury is something"},
-  { name: "venus", scale: 0.96, fileType: "svg", info: "Venus sun is something" },
-  { name: "earth", scale: 1, fileType: "svg", info: "Earth sun is something" },
-  { name: "mars", scale: 0.8, fileType: "svg", info: "Mars sun is something" },
-  { name: "jupiter", scale: 2, fileType: "svg", info: "Jupiter sun is something" },
-  { name: "saturn", scale: 1.5, fileType: "svg", info: "Saturn sun is something" },
-  { name: "uranus", scale: 1.25, fileType: "svg", info: "Uranus sun is something" },
-  { name: "neptune", scale: 1.2, fileType: "svg" , info: "Neptune sun is something"},
+  { name: "sun", scale: 4.5, fileType: "svg", info: "The sun is something"},
+  { name: "mercury", scale: 4.5, fileType: "png" , info: "Mercury is something"},
+  { name: "venus", scale: 4.5, fileType: "svg", info: "Venus sun is something" },
+  { name: "earth", scale: 4.5, fileType: "svg", info: "Earth sun is something" },
+  { name: "mars", scale: 4.5, fileType: "svg", info: "Mars sun is something" },
+  { name: "jupiter", scale: 4.5, fileType: "svg", info: "Jupiter sun is something" },
+  { name: "saturn", scale: 4.5, fileType: "svg", info: "Saturn sun is something" },
+  { name: "uranus", scale: 4.5, fileType: "svg", info: "Uranus sun is something" },
+  { name: "neptune", scale: 4.5, fileType: "svg" , info: "Neptune sun is something"},
+
 ];
 
+const planetsInfo = [
+  { name: "The Sun", info: "Hi there! I'm the Sun, the star at the center of our solar system! I'm super hot and bright, and I give light and warmth to all the planets. Without me, there would be no life on Earth! So, I'm kind of a big deal."},
+  { name: "Mercury", info: "Mercury is the closest planet to the Sun, so it's super hot! It's like an oven, with temperatures that could melt chocolate in no time. Despite being small, it's speedy, zooming around the Sun faster than any other planet! Venus ♀"},
+  { name: "Venus", info: "Venus is like Earth's twin sister, but don't let its beauty fool you! It's the hottest planet in our solar system because of its thick, cloudy atmosphere. If you ever visit Venus, don't forget your sunscreen—those clouds won't protect you from the sizzling heat! Earth 🌍 "},
+  { name: "Earth", info: "Hey, that's where we live! Earth is just right for us—neither too hot nor too cold. It's covered in oceans, forests, deserts, and cities. Plus, it's the only planet with yummy things like ice cream and pizza!"},
+  { name: "Mars", info: "Mars is often called the Red Planet because of its rusty color. It's like a giant sandbox in space! Scientists think there might be water there, and some dream of living on Mars one day. Maybe we'll have space colonies with Martian gardens" },
+  { name: "Jupiter", info: "Saturn is famous for its beautiful rings, like a cosmic hula hoop! Imagine being able to ice skate around them. It's also a gas giant, which means you wouldn't find solid ground to stand on. Just floating in the clouds, watching the rings spin!" },
+ { name: "Saturn", info: "Saturn is famous for its beautiful rings, like a cosmic hula hoop! Imagine being able to ice skate around them. It's also a gas giant, which means you wouldn't find solid ground to stand on. Just floating in the clouds, watching the rings spin!" },
+  { name: "uranus", info: "Uranus likes to do things differently—it spins on its side! That means it rolls around the Sun like a giant space barrel. With its icy blue color, Uranus might seem chilly, but it's actually pretty cold, colder than your freezer at home!" },
+  { name: "Neptune", info: "Neptune is the farthest planet from the Sun, way out in the chilly depths of space. It's like the mysterious ocean of the solar system, with its deep blue color and fierce winds. Neptune also has the coolest storms, swirling around like gigantic hurricanes!"},
+];
 const baseSize = 100;
+
+type PlanetsInfo = {
+  planetsInfo: {
+  name: string;
+  info: string;
+  }
+
+ };
 
 type PlanetProps = {
   planet: {
@@ -30,7 +50,7 @@ type PlanetProps = {
 
 function Planet({ planet, index }: PlanetProps & { index: number }) {
   const [ref, inView] = useInView({
-    triggerOnce: true,
+    triggerOnce: false,
   });
 
   const [initialX, setInitialX] = useState(0);
@@ -70,9 +90,9 @@ function Planet({ planet, index }: PlanetProps & { index: number }) {
   );
 }
 
-function Info({ planet, index }: PlanetProps & { index: number }) {
+function Info({ planetsInfo, index }: PlanetsInfo & { index: number }) {
   const [ref, inView] = useInView({
-    triggerOnce: true,
+    triggerOnce: false,
   });
 
   const [initialX, setInitialX] = useState(0);
@@ -99,17 +119,16 @@ function Info({ planet, index }: PlanetProps & { index: number }) {
         initial={{ opacity: 0, x: initialX }}
         animate={{ opacity: inView ? 1 : 0, x: inView ? 200 : initialX }}
         transition={{ duration: 1 }}
+        
       >
-      <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-blue-500 to-teal-500 transform scale-[0.80] bg-red-500 rounded-full blur-3xl" /> 
-      <div className="relative shadow-xl bg-gray-900 border border-gray-800  px-4 py-8 h-full overflow-hidden rounded-2xl flex flex-col justify-end items-start">
+      <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-blue-500 to-teal-500 transform scale-[0.80] bg-red-500 rounded-full blur-3xl " /> 
+      <div className="relative shadow-xl bg-gray-900 border border-gray-800  px-4 py-8 h-full overflow-hidden rounded-2xl flex flex-col justify-end items-start max-w-4xl">
         <h1 className="font-bold text-xl text-white mb-4 relative z-50">
-            Meteors because they&apos;re cool
+          {planetsInfo.name}
         </h1>
  
         <p className="font-normal text-base text-slate-500 mb-4 relative z-50">
-            I don&apos;t know what to write so I&apos;ll just paste something
-            cool here. One more sentence because lorem ipsum is just
-            unacceptable. Won&apos;t ChatGPT the shit out of this.
+          {planetsInfo.info}
         </p> 
         <button className="border px-4 py-1 rounded-lg  border-gray-500 text-gray-300">
             Take Quiz
@@ -127,7 +146,7 @@ function Info({ planet, index }: PlanetProps & { index: number }) {
 export default function Planets() {
   return (
     <div className="h-auto w-full flex justify-start items-center overflow-hidden">
-      <div className="flex flex-col items-center space-y-20 pt-5">
+      <div className="flex flex-col items-center space-y-20 pt-5 pl-10">
         {planets.map((planet, index) => (
           <div className="h-screen flex items-center" key={planet.name}>
             <Planet planet={planet} index={index} />
@@ -135,9 +154,9 @@ export default function Planets() {
         ))}
       </div>
       <div className="flex flex-col items-center space-y-20 pt-5">
-        {planets.map((planet, index) => (
-          <div className="h-screen flex items-center" key={planet.name}>
-            <Info planet={planet} index={index} />
+        {planetsInfo.map((planetsInfo, index) => (
+          <div className="h-screen flex items-center" key={planetsInfo.name}>
+            <Info planetsInfo={planetsInfo} index={index} />
           </div>
         ))}
       </div>
