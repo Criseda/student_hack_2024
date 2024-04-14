@@ -15,6 +15,9 @@ import {JupiterQuiz} from "@/components/Quizes";
 import {SaturnQuiz} from "@/components/Quizes";
 import {UranusQuiz} from "@/components/Quizes";
 import {NeptuneQuiz} from "@/components/Quizes";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
 const planets = [
   { name: "sun", scale: 4, fileType: "svg", info: "The sun is something" },
@@ -150,7 +153,17 @@ function Info({ planetsInfo, index }: PlanetsInfo & { index: number }) {
     triggerOnce: false,
   });
 
+  const [quizPassed, setQuizPassed] = useState(false);
   const [initialX, setInitialX] = useState(0);
+
+  const handleQuizResult = (isPassed: boolean) => {
+    setQuizPassed(isPassed);
+    if (isPassed) {
+      console.log("Congratulations! You passed the quiz.");
+    } else {
+      console.log("Sorry, you didn't pass the quiz. Try again!");
+    }
+  };
 
   useEffect(() => {
     if (typeof window !== "undefined") {
