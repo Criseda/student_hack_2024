@@ -28,7 +28,6 @@ type PlanetProps = {
   };
 };
 
-
 function Planet({ planet, index }: PlanetProps & { index: number }) {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -71,6 +70,60 @@ function Planet({ planet, index }: PlanetProps & { index: number }) {
   );
 }
 
+function Info({ planet, index }: PlanetProps & { index: number }) {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+  });
+
+  const [initialX, setInitialX] = useState(0);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setInitialX(window.innerWidth - 500);
+    }
+
+    const handleResize = () => {
+      setInitialX(window.innerWidth - 500);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [index]);
+
+  return (
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, x: initialX }}
+        animate={{ opacity: inView ? 1 : 0, x: inView ? 200 : initialX }}
+        transition={{ duration: 1 }}
+      >
+      <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-blue-500 to-teal-500 transform scale-[0.80] bg-red-500 rounded-full blur-3xl" /> 
+      <div className="relative shadow-xl bg-gray-900 border border-gray-800  px-4 py-8 h-full overflow-hidden rounded-2xl flex flex-col justify-end items-start">
+        <h1 className="font-bold text-xl text-white mb-4 relative z-50">
+            Meteors because they&apos;re cool
+        </h1>
+ 
+        <p className="font-normal text-base text-slate-500 mb-4 relative z-50">
+            I don&apos;t know what to write so I&apos;ll just paste something
+            cool here. One more sentence because lorem ipsum is just
+            unacceptable. Won&apos;t ChatGPT the shit out of this.
+        </p> 
+        <button className="border px-4 py-1 rounded-lg  border-gray-500 text-gray-300">
+            Take Quiz
+        </button> 
+      <Meteors number={20} />   
+      </div> 
+      </motion.div> 
+    
+  );
+}
+
+
+
+
 export default function Planets() {
   return (
     <div className="h-auto w-screen flex justify-start items-center overflow-hidden">
@@ -81,6 +134,13 @@ export default function Planets() {
           </div>
         ))}
       </div>
-    </div>
+      <div className="flex flex-col items-center space-y-20 pt-5">
+        {planets.map((planet, index) => (
+          <div className="h-screen flex items-center" key={planet.name}>
+            <Info planet={planet} index={index} />
+          </div>
+        ))}
+      </div>
+  </div>
   );
 }
