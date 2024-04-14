@@ -7,6 +7,14 @@ import { useInView } from "react-intersection-observer";
 import { Element } from "react-scroll";
 import { Meteors } from "@/components/ui/meteors";
 import { SunQuiz } from "@/components/Quizes";
+import {MercuryQuiz} from "@/components/Quizes";
+import {VenusQuiz} from "@/components/Quizes";
+import {EarthQuiz} from "@/components/Quizes";
+import {MarsQuiz} from "@/components/Quizes";
+import {JupiterQuiz} from "@/components/Quizes";
+import {SaturnQuiz} from "@/components/Quizes";
+import {UranusQuiz} from "@/components/Quizes";
+import {NeptuneQuiz} from "@/components/Quizes";
 
 const planets = [
   { name: "sun", scale: 4, fileType: "svg", info: "The sun is something" },
@@ -42,7 +50,7 @@ const planets = [
 
 const planetsInfo = [
   {
-    name: "The Sun",
+    name: "Sun",
     info: "Hi there! I'm the Sun, the star at the center of our solar system! I'm super hot and bright, and I give light and warmth to all the planets. Without me, there would be no life on Earth! So, I'm kind of a big deal.",
   },
   {
@@ -160,6 +168,33 @@ function Info({ planetsInfo, index }: PlanetsInfo & { index: number }) {
     };
   }, [index]);
 
+   // Function to render the correct quiz component based on the planet name
+  const renderQuizComponent = (planetName: string) => {
+    switch (planetName.toLowerCase()) {
+      case "sun":
+        return <SunQuiz />;
+      case "mercury":
+        return <MercuryQuiz />;
+      case "venus":
+        return <VenusQuiz />;
+      case "earth":
+        return <EarthQuiz />;
+      case "mars":
+        return <MarsQuiz />;
+      case "jupiter":
+        return <JupiterQuiz />;
+      case "saturn":
+        return <SaturnQuiz />;
+      case "uranus":
+        return <UranusQuiz />;
+      case "neptune":
+        return <NeptuneQuiz />;
+      default:
+        return null; // Handle case when no matching planet name is found
+    }
+  };
+
+
   return (
     <motion.div
       ref={ref}
@@ -176,7 +211,8 @@ function Info({ planetsInfo, index }: PlanetsInfo & { index: number }) {
         <p className="font-normal text-base text-slate-500 mb-4 relative z-50">
           {planetsInfo.info}
         </p>
-        <SunQuiz />
+         
+        {renderQuizComponent(planetsInfo.name)}
         <Meteors number={20} />
       </div>
     </motion.div>
