@@ -5,7 +5,7 @@ import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 export default function HomePage() {
   return (
-    <div className="h-screen w-screen bg-neutral-950 relative flex flex-col items-center justify-center antialiased">
+    <div className="h-screen w-full bg-neutral-950 relative flex flex-col items-center justify-center antialiased">
       <div className="max-w-2xl mx-auto p-4 flex flex-col h-full items-center">
         <div className="flex-grow" />
         <h1 className="relative z-10 text-lg md:text-7xl bg-clip-text text-transparent bg-gradient-to-b from-blue-400 blue to-purple-500 text-center font-sans font-bold">

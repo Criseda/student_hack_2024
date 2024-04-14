@@ -56,7 +56,7 @@ function Planet({ planet, index }: PlanetProps & { index: number }) {
       <motion.div
         ref={ref}
         initial={{ opacity: 0, x: initialX }}
-        animate={{ opacity: inView ? 1 : 0, x: inView ? 0 : initialX }}
+        animate={{ opacity: inView ? 1 : 0, x: inView ? 10 : initialX }}
         transition={{ duration: 1 }}
       >
         <Image
@@ -126,7 +126,7 @@ function Info({ planet, index }: PlanetProps & { index: number }) {
 
 export default function Planets() {
   return (
-    <div className="h-auto w-screen flex justify-start items-center overflow-hidden">
+    <div className="h-auto w-full flex justify-start items-center overflow-hidden">
       <div className="flex flex-col items-center space-y-20 pt-5">
         {planets.map((planet, index) => (
           <div className="h-screen flex items-center" key={planet.name}>
