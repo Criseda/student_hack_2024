@@ -1,3 +1,5 @@
+"use client";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -8,15 +10,45 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 
-export function SunQuiz() {
+export function SunQuiz({
+  onQuizResult,
+}: {
+  onQuizResult: (isPassed: boolean) => void;
+}) {
+  const [answer1, setAnswer1] = useState("");
+  const [answer2, setAnswer2] = useState("");
+  const [answer3, setAnswer3] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleSubmit = () => {
+    const correctAnswers = ["star", "hot", "yes"];
+    const userAnswers = [answer1, answer2, answer3];
+    const isCorrect = correctAnswers.every(
+      (answer, index) => answer === userAnswers[index]
+    );
+
+    if (isCorrect) {
+      onQuizResult(true);
+    } else {
+      onQuizResult(false);
+    }
+
+    setIsOpen(false);
+  };
+
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button variant={"default"} className="bg-blue-500 text-white">
+        <Button
+          variant={"default"}
+          className="bg-blue-500 text-white"
+          onClick={() => {
+            setIsOpen(true);
+          }}
+        >
           Start Sun Quiz
         </Button>
       </DialogTrigger>
@@ -31,7 +63,7 @@ export function SunQuiz() {
             Let&apos;s learn about the Sun! Choose the best answer for each
             question.
           </p>
-          <RadioGroup name="sunQuiz">
+          <RadioGroup name="sunQuiz1" onValueChange={setAnswer1}>
             <p className="font-bold mb-2">1. What is the Sun?</p>
             <div className="mb-1">
               <RadioGroupItem value="star" id="r1">
@@ -48,7 +80,9 @@ export function SunQuiz() {
                 <Label htmlFor="r3">C. A moon</Label>
               </RadioGroupItem>
             </div>
+          </RadioGroup>
 
+          <RadioGroup name="sunQuiz2" onValueChange={setAnswer2}>
             <p className="font-bold mb-2">2. Is the Sun hot or cold?</p>
             <div className="mb-1">
               <RadioGroupItem value="hot" id="r4">
@@ -60,7 +94,9 @@ export function SunQuiz() {
                 <Label htmlFor="r5">B. Cold</Label>
               </RadioGroupItem>
             </div>
+          </RadioGroup>
 
+          <RadioGroup name="sunQuiz3" onValueChange={setAnswer3}>
             <p className="font-bold mb-2">3. Does the Sun give us light?</p>
             <div className="mb-1">
               <RadioGroupItem value="yes" id="r6">
@@ -75,10 +111,18 @@ export function SunQuiz() {
           </RadioGroup>
         </DialogDescription>
         <DialogFooter>
-          <Button variant={"secondary"} className="bg-red-500 text-white">
+          <Button
+            variant={"secondary"}
+            className="bg-red-500 text-white"
+            onClick={() => setIsOpen(false)}
+          >
             Cancel
           </Button>
-          <Button variant={"default"} className="bg-green-500 text-white">
+          <Button
+            variant={"default"}
+            className="bg-green-500 text-white"
+            onClick={handleSubmit}
+          >
             Submit
           </Button>
         </DialogFooter>
