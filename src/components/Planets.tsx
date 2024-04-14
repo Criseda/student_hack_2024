@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Meteors } from "@/components/ui/meteors"
+import { Element } from "react-scroll";
 
 const planets = [
   { name: "sun", scale: 4.5, fileType: "svg", info: "The sun is something"},
@@ -144,13 +145,16 @@ function Info({ planetsInfo, index }: PlanetsInfo & { index: number }) {
 
 
 export default function Planets() {
+
   return (
     <div className="h-auto w-full flex justify-start items-center overflow-hidden">
       <div className="flex flex-col items-center space-y-20 pt-5 pl-10">
         {planets.map((planet, index) => (
-          <div className="h-screen flex items-center" key={planet.name}>
+          <Element name={planet.name} key={planet.name}>
+          <div className="h-screen flex items-center">
             <Planet planet={planet} index={index} />
           </div>
+          </Element>
         ))}
       </div>
       <div className="flex flex-col items-center space-y-20 pt-5">
