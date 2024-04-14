@@ -131,7 +131,33 @@ export function SunQuiz({
     </Dialog>
   );
 }
-export function MercuryQuiz() {
+export function MercuryQuiz({
+    onQuizResult
+  }: {
+    onQuizResult: (isPassed: boolean) => void;
+  }) {
+    const [answer1, setAnswer1] = useState("");
+    const [answer2, setAnswer2] = useState("");
+    const [answer3, setAnswer3] = useState("");
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleSubmit = () => {
+      const correctAnswers = ["sun", "59", "mercury"];
+      const userAnswers = [answer1, answer2, answer3];
+      const isCorrect = correctAnswers.every(
+        (answer, index) => answer === userAnswers[index]
+      );
+
+      if (isCorrect) {
+        onQuizResult(true);
+      } else {
+        onQuizResult(false);
+      }
+
+      setIsOpen(false);
+  };
+
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -150,7 +176,7 @@ export function MercuryQuiz() {
             Let&apos;s explore Mercury! Choose the best answer for each
             question.
           </p>
-          <RadioGroup name="mercuryQuiz">
+          <RadioGroup name="mercuryQuiz1 " onValueChange={setAnswer1} >
             <p className="font-bold mb-2">1. What is Mercury closest to?</p>
             <div className="mb-1">
               <RadioGroupItem value="sun" id="r1">
@@ -167,11 +193,12 @@ export function MercuryQuiz() {
                 <Label htmlFor="r3">C. The Moon</Label>
               </RadioGroupItem>
             </div>
-
+            </RadioGroup>
+            <RadioGroup name="mercuryQuiz2" onValueChange={setAnswer2}>
             <p className="font-bold mb-2">2. How long is a day on Mercury?</p>
             <div className="mb-1">
-              <RadioGroupItem value="88" id="r4">
-                <Label htmlFor="r4">A. 88 Earth days</Label>
+              <RadioGroupItem value="59" id="r4">
+                <Label htmlFor="r4">A. 59 Earth days</Label>
               </RadioGroupItem>
             </div>
             <div className="mb-4">
@@ -179,7 +206,8 @@ export function MercuryQuiz() {
                 <Label htmlFor="r5">B. 24 hours</Label>
               </RadioGroupItem>
             </div>
-
+          </RadioGroup>
+          <RadioGroup name="mercuryQuiz3" onValueChange={setAnswer3}>
             <p className="font-bold mb-2">3. Which planet is smaller, Mercury or Earth?</p>
             <div className="mb-1">
               <RadioGroupItem value="mercury" id="r6">
@@ -206,7 +234,33 @@ export function MercuryQuiz() {
   );
 }
 
-export function VenusQuiz() {
+export function VenusQuiz({
+    onQuizResult
+  }: {
+    onQuizResult: (isPassed: boolean) => void;
+  }) {
+    const [answer1, setAnswer1] = useState("");
+    const [answer2, setAnswer2] = useState("");
+    const [answer3, setAnswer3] = useState("");
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleSubmit = () => {
+      const correctAnswers = ["hot", "second", "yellow"];
+      const userAnswers = [answer1, answer2, answer3];
+      const isCorrect = correctAnswers.every(
+        (answer, index) => answer === userAnswers[index]
+      );
+
+      if (isCorrect) {
+        onQuizResult(true);
+      } else {
+        onQuizResult(false);
+      }
+
+      setIsOpen(false);
+  };
+
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -226,7 +280,7 @@ export function VenusQuiz() {
             question.
           </p>
           
-          <RadioGroup name="venusQuiz1">
+          <RadioGroup name="venusQuiz1" onValueChange={setAnswer1}>
             <p className="font-bold mb-2">1. What is Venus known for?</p>
             <div className="mb-1">
               <RadioGroupItem value="hot" id="r1">
@@ -244,8 +298,7 @@ export function VenusQuiz() {
               </RadioGroupItem>
             </div>
           </RadioGroup>
-
-          <RadioGroup name="venusQuiz2">
+          <RadioGroup name="venusQuiz2" onValueChange={setAnswer2}>
             <p className="font-bold mb-2">2. Which planet is Venus from the Sun?</p>
             <div className="mb-1">
               <RadioGroupItem value="second" id="r4">
@@ -258,8 +311,7 @@ export function VenusQuiz() {
               </RadioGroupItem>
             </div>
           </RadioGroup>
-
-          <RadioGroup name="venusQuiz3">
+          <RadioGroup name="venusQuiz3" onValueChange={setAnswer3}>
             <p className="font-bold mb-2">3. What is Venus&apos;s color?</p>
             <div className="mb-1">
               <RadioGroupItem value="yellow" id="r6">
@@ -272,7 +324,6 @@ export function VenusQuiz() {
               </RadioGroupItem>
             </div>
           </RadioGroup>
-
         </DialogDescription>
         <DialogFooter>
           <Button variant={"secondary"} className="bg-red-500 text-white">
@@ -287,7 +338,34 @@ export function VenusQuiz() {
   );
 }
 
-export function EarthQuiz() {
+export function EarthQuiz({
+    onQuizResult
+  }: {
+    onQuizResult: (isPassed: boolean) => void;
+  }) {
+    const [answer1, setAnswer1] = useState("");
+    const [answer2, setAnswer2] = useState("");
+    const [answer3, setAnswer3] = useState("");
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleSubmit = () => {
+      const correctAnswers = ["seven", "water", "lion"];
+      const userAnswers = [answer1, answer2, answer3];
+      const isCorrect = correctAnswers.every(
+        (answer, index) => answer === userAnswers[index]
+      );
+
+      if (isCorrect) {
+        onQuizResult(true);
+      } else {
+        onQuizResult(false);
+      }
+
+      setIsOpen(false);
+  };
+
+
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -305,10 +383,10 @@ export function EarthQuiz() {
           <p className="mb-4">
             Let&apos;s learn about Earth! Choose the best answer for each question.
           </p>
-          <RadioGroup name="earthQuiz">
+          <RadioGroup name="earthQuiz1" onValueChange={setAnswer1}>
             <p className="font-bold mb-2">1. How many continents are there on Earth?</p>
             <div className="mb-1">
-              <RadioGroupItem value="seven" id="r1">
+              <RadioGroupItem value="seven" id="r1">  
                 <Label htmlFor="r1">A. Seven</Label>
               </RadioGroupItem>
             </div>
@@ -322,7 +400,8 @@ export function EarthQuiz() {
                 <Label htmlFor="r3">C. Ten</Label>
               </RadioGroupItem>
             </div>
-
+            </RadioGroup>
+            <RadioGroup name="earthQuiz2" onValueChange={setAnswer2}>
             <p className="font-bold mb-2">2. What is the Earth mostly covered with?</p>
             <div className="mb-1">
               <RadioGroupItem value="water" id="r4">
@@ -334,7 +413,8 @@ export function EarthQuiz() {
                 <Label htmlFor="r5">B. Rocks</Label>
               </RadioGroupItem>
             </div>
-
+            </RadioGroup>
+            <RadioGroup name="earthQuiz3" onValueChange={setAnswer3}>
             <p className="font-bold mb-2">3. Which animal is known as the &apos;King of the Jungle&apos;?</p>
             <div className="mb-1">
               <RadioGroupItem value="lion" id="r6">
@@ -361,7 +441,34 @@ export function EarthQuiz() {
   );
 }
 
-export function MarsQuiz() {
+export function MarsQuiz({
+    onQuizResult
+  }: {
+    onQuizResult: (isPassed: boolean) => void;
+  }) {
+    const [answer1, setAnswer1] = useState("");
+    const [answer2, setAnswer2] = useState("");
+    const [answer3, setAnswer3] = useState("");
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleSubmit = () => {
+      const correctAnswers = ["planet", "hot", "no"];
+      const userAnswers = [answer1, answer2, answer3];
+      const isCorrect = correctAnswers.every(
+        (answer, index) => answer === userAnswers[index]
+      );
+
+      if (isCorrect) {
+        onQuizResult(true);
+      } else {
+        onQuizResult(false);
+      }
+
+      setIsOpen(false);
+  };
+
+
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -436,7 +543,34 @@ export function MarsQuiz() {
   );
 }
 
-export function JupiterQuiz() {
+export function JupiterQuiz({
+    onQuizResult
+  }: {
+    onQuizResult: (isPassed: boolean) => void;
+  }) {
+    const [answer1, setAnswer1] = useState("");
+    const [answer2, setAnswer2] = useState("");
+    const [answer3, setAnswer3] = useState("");
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleSubmit = () => {
+      const correctAnswers = ["planet", "gas", "13"];
+      const userAnswers = [answer1, answer2, answer3];
+      const isCorrect = correctAnswers.every(
+        (answer, index) => answer === userAnswers[index]
+      );
+
+      if (isCorrect) {
+        onQuizResult(true);
+      } else {
+        onQuizResult(false);
+      }
+
+      setIsOpen(false);
+  };
+
+
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -455,7 +589,7 @@ export function JupiterQuiz() {
             Let&apos;s learn about Jupiter! Choose the best answer for each
             question.
           </p>
-          <RadioGroup name="jupiterQuiz">
+          <RadioGroup name="jupiterQuiz" onValueChange={setAnswer1}>
             <p className="font-bold mb-2">1. What is Jupiter?</p>
             <div className="mb-1">
               <RadioGroupItem value="planet" id="r1">
@@ -472,7 +606,8 @@ export function JupiterQuiz() {
                 <Label htmlFor="r3">C. A moon</Label>
               </RadioGroupItem>
             </div>
-
+          </RadioGroup>
+          <RadioGroup name="jupiterQuiz2" onValueChange={setAnswer2}>
             <p className="font-bold mb-2">2. What is Jupiter mostly made of?</p>
             <div className="mb-1">
               <RadioGroupItem value="gas" id="r4">
@@ -484,7 +619,8 @@ export function JupiterQuiz() {
                 <Label htmlFor="r5">B. Rock</Label>
               </RadioGroupItem>
             </div>
-
+          </RadioGroup>
+          <RadioGroup name="jupiterQuiz3" onValueChange={setAnswer3}>
             <p className="font-bold mb-2">3. How many moons does Jupiter have?</p>
             <div className="mb-1">
               <RadioGroupItem value="79" id="r6">
@@ -511,7 +647,33 @@ export function JupiterQuiz() {
   );
 }
 
-export function SaturnQuiz() {
+export function SaturnQuiz({
+    onQuizResult
+  }: {
+    onQuizResult: (isPassed: boolean) => void;
+  }) {
+    const [answer1, setAnswer1] = useState("");
+    const [answer2, setAnswer2] = useState("");
+    const [answer3, setAnswer3] = useState("");
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleSubmit = () => {
+      const correctAnswers = ["planet", "rings", "7"];
+      const userAnswers = [answer1, answer2, answer3];
+      const isCorrect = correctAnswers.every(
+        (answer, index) => answer === userAnswers[index]
+      );
+
+      if (isCorrect) {
+        onQuizResult(true);
+      } else {
+        onQuizResult(false);
+      }
+
+      setIsOpen(false);
+  };
+
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -530,7 +692,7 @@ export function SaturnQuiz() {
             Let&apos;s learn about Saturn! Choose the best answer for each
             question.
           </p>
-          <RadioGroup name="saturnQuiz">
+          <RadioGroup name="saturnQuiz1" onValueChange={setAnswer1}>
             <p className="font-bold mb-2">1. What is Saturn?</p>
             <div className="mb-1">
               <RadioGroupItem value="planet" id="r1">
@@ -547,7 +709,8 @@ export function SaturnQuiz() {
                 <Label htmlFor="r3">C. A moon</Label>
               </RadioGroupItem>
             </div>
-
+            </RadioGroup>
+            <RadioGroup name="saturnQuiz2" onValueChange={setAnswer2}>
             <p className="font-bold mb-2">2. What is Saturn known for?</p>
             <div className="mb-1">
               <RadioGroupItem value="rings" id="r4">
@@ -559,7 +722,8 @@ export function SaturnQuiz() {
                 <Label htmlFor="r5">B. Its size</Label>
               </RadioGroupItem>
             </div>
-
+            </RadioGroup>
+            <RadioGroup name="saturnQuiz3" onValueChange={setAnswer3}>
             <p className="font-bold mb-2">3. How many rings does Saturn have?</p>
             <div className="mb-1">
               <RadioGroupItem value="7" id="r6">
@@ -586,7 +750,34 @@ export function SaturnQuiz() {
   );
 }
 
-export function UranusQuiz() {
+export function UranusQuiz({
+    onQuizResult
+  }: {
+    onQuizResult: (isPassed: boolean) => void;
+  }) {
+    const [answer1, setAnswer1] = useState("");
+    const [answer2, setAnswer2] = useState("");
+    const [answer3, setAnswer3] = useState("");
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleSubmit = () => {
+      const correctAnswers = ["planet", "zero", "blue"];
+      const userAnswers = [answer1, answer2, answer3];
+      const isCorrect = correctAnswers.every(
+        (answer, index) => answer === userAnswers[index]
+      );
+
+      if (isCorrect) {
+        onQuizResult(true);
+      } else {
+        onQuizResult(false);
+      }
+
+      setIsOpen(false);
+  };
+
+
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -605,7 +796,7 @@ export function UranusQuiz() {
             Let&apos;s learn about Uranus! Choose the best answer for each
             question.
           </p>
-          <RadioGroup name="uranusQuiz">
+          <RadioGroup name="uranusQuiz1" onValueChange={setAnswer1}>
             <p className="font-bold mb-2">1. What is Uranus?</p>
             <div className="mb-1">
               <RadioGroupItem value="planet" id="r1">
@@ -622,7 +813,8 @@ export function UranusQuiz() {
                 <Label htmlFor="r3">C. A moon</Label>
               </RadioGroupItem>
             </div>
-
+            </RadioGroup>
+            <RadioGroup name="uranusQuiz2" onValueChange={setAnswer2}>
             <p className="font-bold mb-2">2. How many rings does Uranus have?</p>
             <div className="mb-1">
               <RadioGroupItem value="13" id="r4">
@@ -634,7 +826,8 @@ export function UranusQuiz() {
                 <Label htmlFor="r5">B. 0</Label>
               </RadioGroupItem>
             </div>
-
+            </RadioGroup>
+            <RadioGroup name="uranusQuiz3" onValueChange={setAnswer3}>
             <p className="font-bold mb-2">3. What is the color of Uranus?</p>
             <div className="mb-1">
               <RadioGroupItem value="blue" id="r6">
@@ -661,7 +854,34 @@ export function UranusQuiz() {
   );
 }
 
-export function NeptuneQuiz() {
+export function NeptuneQuiz({
+    onQuizResult
+  }: {
+    onQuizResult: (isPassed: boolean) => void;
+  }) {
+    const [answer1, setAnswer1] = useState("");
+    const [answer2, setAnswer2] = useState("");
+    const [answer3, setAnswer3] = useState("");
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleSubmit = () => {
+      const correctAnswers = ["planet", "14", "blue"];
+      const userAnswers = [answer1, answer2, answer3];
+      const isCorrect = correctAnswers.every(
+        (answer, index) => answer === userAnswers[index]
+      );
+
+      if (isCorrect) {
+        onQuizResult(true);
+      } else {
+        onQuizResult(false);
+      }
+
+      setIsOpen(false);
+  };
+
+
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -680,7 +900,7 @@ export function NeptuneQuiz() {
             Let&apos;s learn about Neptune! Choose the best answer for each
             question.
           </p>
-          <RadioGroup name="neptuneQuiz">
+          <RadioGroup name="neptuneQuiz1" onValueChange={setAnswer1}>
             <p className="font-bold mb-2">1. What is Neptune?</p>
             <div className="mb-1">
               <RadioGroupItem value="planet" id="r1">
@@ -697,7 +917,8 @@ export function NeptuneQuiz() {
                 <Label htmlFor="r3">C. A moon</Label>
               </RadioGroupItem>
             </div>
-
+            </RadioGroup>
+            <RadioGroup name="neptuneQuiz2" onValueChange={setAnswer2}>
             <p className="font-bold mb-2">2. How many moons does Neptune have?</p>
             <div className="mb-1">
               <RadioGroupItem value="14" id="r4">
@@ -709,7 +930,8 @@ export function NeptuneQuiz() {
                 <Label htmlFor="r5">B. 2</Label>
               </RadioGroupItem>
             </div>
-
+            </RadioGroup>
+            <RadioGroup name="neptuneQuiz3" onValueChange={setAnswer3}>
             <p className="font-bold mb-2">3. What is Neptune&apos;s color?</p>
             <div className="mb-1">
               <RadioGroupItem value="blue" id="r6">
