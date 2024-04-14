@@ -7,6 +7,9 @@ import { useInView } from "react-intersection-observer";
 import { Element } from "react-scroll";
 import { Meteors } from "@/components/ui/meteors";
 import { SunQuiz } from "@/components/Quizes";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import {MercuryQuiz} from "@/components/Quizes";
 import {VenusQuiz} from "@/components/Quizes";
 import {EarthQuiz} from "@/components/Quizes";
@@ -150,7 +153,17 @@ function Info({ planetsInfo, index }: PlanetsInfo & { index: number }) {
     triggerOnce: false,
   });
 
+  const [quizPassed, setQuizPassed] = useState(false);
   const [initialX, setInitialX] = useState(0);
+
+  const handleQuizResult = (isPassed: boolean) => {
+    setQuizPassed(isPassed);
+    if (isPassed) {
+      console.log("Congratulations! You passed the quiz.");
+    } else {
+      console.log("Sorry, you didn't pass the quiz. Try again!");
+    }
+  };
 
   useEffect(() => {
     if (typeof window !== "undefined") {
