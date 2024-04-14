@@ -58,11 +58,11 @@ const planetsInfo = [
   },
   {
     name: "Mercury",
-    info: "Mercury is the closest planet to the Sun, so it's super hot! It's like an oven, with temperatures that could melt chocolate in no time. Despite being small, it's speedy, zooming around the Sun faster than any other planet! Venus ♀",
+    info: "Mercury is the closest planet to the Sun, so it's super hot! It's like an oven, with temperatures that could melt chocolate in no time. Despite being small, it's speedy, zooming around the Sun faster than any other planet!",
   },
   {
     name: "Venus",
-    info: "Venus is like Earth's twin sister, but don't let its beauty fool you! It's the hottest planet in our solar system because of its thick, cloudy atmosphere. If you ever visit Venus, don't forget your sunscreen—those clouds won't protect you from the sizzling heat! Earth 🌍 ",
+    info: "Venus is like Earth's twin sister, but don't let its beauty fool you! It's the hottest planet in our solar system because of its thick, cloudy atmosphere. If you ever visit Venus, don't forget your sunscreen—those clouds won't protect you from the sizzling heat!",
   },
   {
     name: "Earth",
