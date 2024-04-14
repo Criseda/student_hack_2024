@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Element } from "react-scroll";
 import { Meteors } from "@/components/ui/meteors";
+import { SunQuiz } from "@/components/Quizes";
 
 const planets = [
   { name: "sun", scale: 4, fileType: "svg", info: "The sun is something" },
@@ -175,9 +176,7 @@ function Info({ planetsInfo, index }: PlanetsInfo & { index: number }) {
         <p className="font-normal text-base text-slate-500 mb-4 relative z-50">
           {planetsInfo.info}
         </p>
-        <button className="border px-4 py-1 rounded-lg  border-gray-500 text-gray-300">
-          Take Quiz
-        </button>
+        <SunQuiz />
         <Meteors number={20} />
       </div>
     </motion.div>
