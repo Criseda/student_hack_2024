@@ -10,14 +10,14 @@ import { SunQuiz } from "@/components/Quizes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
-import {MercuryQuiz} from "@/components/Quizes";
-import {VenusQuiz} from "@/components/Quizes";
-import {EarthQuiz} from "@/components/Quizes";
-import {MarsQuiz} from "@/components/Quizes";
-import {JupiterQuiz} from "@/components/Quizes";
-import {SaturnQuiz} from "@/components/Quizes";
-import {UranusQuiz} from "@/components/Quizes";
-import {NeptuneQuiz} from "@/components/Quizes";
+import { MercuryQuiz } from "@/components/Quizes";
+import { VenusQuiz } from "@/components/Quizes";
+import { EarthQuiz } from "@/components/Quizes";
+import { MarsQuiz } from "@/components/Quizes";
+import { JupiterQuiz } from "@/components/Quizes";
+import { SaturnQuiz } from "@/components/Quizes";
+import { UranusQuiz } from "@/components/Quizes";
+import { NeptuneQuiz } from "@/components/Quizes";
 
 const planets = [
   { name: "sun", scale: 4, fileType: "svg", info: "The sun is something" },
