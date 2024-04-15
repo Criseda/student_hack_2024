@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -74,8 +74,8 @@ const planetsInfo = [
   },
   {
     name: "Jupiter",
-    info: "Imagine a giant ball floating in space, bigger than any other planet in our solar system. That's Jupiter! If you tried to land on Jupiter, you would just sink and sink into its thick, stormy clouds. Speaking of storms, Jupiter is famous for its big, swirling storms. The most famous one is called the Great Red Spot. It's like a gigantic hurricane that's been raging for hundreds of years! Jupiter also has a lot of moons - more than 70! "
-},
+    info: "Imagine a giant ball floating in space, bigger than any other planet in our solar system. That's Jupiter! If you tried to land on Jupiter, you would just sink and sink into its thick, stormy clouds. Speaking of storms, Jupiter is famous for its big, swirling storms. The most famous one is called the Great Red Spot. It's like a gigantic hurricane that's been raging for hundreds of years! Jupiter also has a lot of moons - more than 70! ",
+  },
   {
     name: "Saturn",
     info: "Saturn is famous for its beautiful rings, like a cosmic hula hoop! Imagine being able to ice skate around them. It's also a gas giant, which means you wouldn't find solid ground to stand on. Just floating in the clouds, watching the rings spin!",
@@ -115,11 +115,11 @@ function Planet({ planet, index }: PlanetProps & { index: number }) {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      setInitialX(window.innerWidth - 200);
+      setInitialX(window.innerWidth - 220);
     }
 
     const handleResize = () => {
-      setInitialX(window.innerWidth - 200);
+      setInitialX(window.innerWidth - 220);
     };
 
     window.addEventListener("resize", handleResize);
@@ -252,7 +252,7 @@ function Info({ planetsInfo, index }: PlanetsInfo & { index: number }) {
       transition={{ duration: 1 }}
     >
       <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-teal-500 transform scale-[0.8] bg-red-500 rounded-full blur-3xl " />
-      <div className="relative shadow-xl bg-gray-900 border border-gray-800  px-4 py-8 h-full overflow-hidden rounded-2xl flex flex-col justify-end items-start max-w-4xl">
+      <div className="relative shadow-xl bg-gray-900 border border-gray-800  px-4 py-8 h-full overflow-hidden rounded-2xl flex flex-col justify-end items-start max-w-7xl">
         <h1 className="font-bold text-xl text-white mb-4 relative z-50">
           {planetsInfo.name}
         </h1>
@@ -285,24 +285,68 @@ function Info({ planetsInfo, index }: PlanetsInfo & { index: number }) {
 }
 
 export default function Planets() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsMobile(window.innerWidth < 800);
+    }
+
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 800);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   return (
-    <div className="h-auto w-full flex justify-start items-center overflow-hidden space-x-10">
-      <div className="flex flex-col items-center space-y-20 pt-5 px-10">
-        {planets.map((planet, index) => (
-          <Element name={planet.name} key={planet.name}>
-            <div className="h-screen flex items-center">
-              <Planet planet={planet} index={index} />
+    <>
+      {isMobile &&
+        planets.map((planet, index) => (
+          <React.Fragment key={planet.name}>
+            <div className="h-auto w-full flex flex-col space-y-0 justify-start items-center overflow-hidden">
+            <div className="flex flex-col items-center space-y-10 py-10 px-10">
+              <Element name={planet.name}>
+                <div className="flex items-center">
+                  <Planet planet={planet} index={index} />
+                </div>
+              </Element>
             </div>
-          </Element>
+            {planetsInfo[index] && (
+              <div className="flex flex-col items-center space-y-10 px-10 pb-40">
+                <div className="flex items-center">
+                  <Info planetsInfo={planetsInfo[index]} index={index} />
+                </div>
+              </div>
+            )}
+            </div>
+          </React.Fragment>
         ))}
-      </div>
-      <div className="flex flex-col items-center space-y-20 pt-5 pr-10">
-        {planetsInfo.map((planetsInfo, index) => (
-          <div className="h-screen flex items-center" key={planetsInfo.name}>
-            <Info planetsInfo={planetsInfo} index={index} />
+      {!isMobile && (
+        <div className="h-auto w-full flex flex-row space-x-10 justify-start items-center overflow-hidden">
+          <div className="flex flex-col items-center space-y-20 pt-5 px-10">
+            {planets.map((planet, index) => (
+              <Element name={planet.name} key={planet.name}>
+                <div className="h-screen flex items-center">
+                  <Planet planet={planet} index={index} />
+                </div>
+              </Element>
+            ))}
           </div>
-        ))}
-      </div>
-    </div>
+          <div className="flex flex-col items-center space-y-20 pt-5 pr-10">
+            {planetsInfo.map((planetsInfo, index) => (
+              <div
+                className="h-screen flex items-center"
+                key={planetsInfo.name}
+              >
+                <Info planetsInfo={planetsInfo} index={index} />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </>
   );
 }
