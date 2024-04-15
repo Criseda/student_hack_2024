@@ -74,8 +74,8 @@ const planetsInfo = [
   },
   {
     name: "Jupiter",
-    info: "Saturn is famous for its beautiful rings, like a cosmic hula hoop! Imagine being able to ice skate around them. It's also a gas giant, which means you wouldn't find solid ground to stand on. Just floating in the clouds, watching the rings spin!",
-  },
+    info: "Imagine a giant ball floating in space, bigger than any other planet in our solar system. That's Jupiter! If you tried to land on Jupiter, you would just sink and sink into its thick, stormy clouds. Speaking of storms, Jupiter is famous for its big, swirling storms. The most famous one is called the Great Red Spot. It's like a gigantic hurricane that's been raging for hundreds of years! Jupiter also has a lot of moons - more than 70! "
+},
   {
     name: "Saturn",
     info: "Saturn is famous for its beautiful rings, like a cosmic hula hoop! Imagine being able to ice skate around them. It's also a gas giant, which means you wouldn't find solid ground to stand on. Just floating in the clouds, watching the rings spin!",

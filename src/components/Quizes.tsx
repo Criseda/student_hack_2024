@@ -783,7 +783,7 @@ export function UranusQuiz({
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSubmit = () => {
-    const correctAnswers = ["planet", "zero", "blue"];
+    const correctAnswers = ["planet", "13", "blue"];
     const userAnswers = [answer1, answer2, answer3];
     const isCorrect = correctAnswers.every(
       (answer, index) => answer === userAnswers[index]
