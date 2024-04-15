@@ -303,7 +303,7 @@ export function VenusQuiz({
           </RadioGroup>
           <RadioGroup name="venusQuiz2" onValueChange={setAnswer2}>
             <p className="font-bold mb-2">
-              2. Which planet is Venus from the Sun?
+              2. In the order of planets from the Sun, which position does Venus hold?
             </p>
             <div className="mb-1">
               <RadioGroupItem value="second" id="r4">
@@ -571,7 +571,7 @@ export function JupiterQuiz({
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSubmit = () => {
-    const correctAnswers = ["planet", "gas", "13"];
+    const correctAnswers = ["planet", "gas", "95"];
     const userAnswers = [answer1, answer2, answer3];
     const isCorrect = correctAnswers.every(
       (answer, index) => answer === userAnswers[index]
@@ -642,8 +642,8 @@ export function JupiterQuiz({
               3. How many moons does Jupiter have?
             </p>
             <div className="mb-1">
-              <RadioGroupItem value="79" id="r6">
-                <Label htmlFor="r6">A. 79</Label>
+              <RadioGroupItem value="95" id="r6">
+                <Label htmlFor="r6">A. 95</Label>
               </RadioGroupItem>
             </div>
             <div className="mb-4">

@@ -81,7 +81,7 @@ const planetsInfo = [
     info: "Saturn is famous for its beautiful rings, like a cosmic hula hoop! Imagine being able to ice skate around them. It's also a gas giant, which means you wouldn't find solid ground to stand on. Just floating in the clouds, watching the rings spin!",
   },
   {
-    name: "uranus",
+    name: "Uranus",
     info: "Uranus likes to do things differently—it spins on its side! That means it rolls around the Sun like a giant space barrel. With its icy blue color, Uranus might seem chilly, but it's actually pretty cold, colder than your freezer at home!",
   },
   {
