@@ -134,7 +134,7 @@ function Planet({ planet, index }: PlanetProps & { index: number }) {
       <motion.div
         ref={ref}
         initial={{ opacity: 0, x: initialX }}
-        animate={{ opacity: inView ? 1 : 0, x: inView ? 10 : initialX }}
+        animate={{ opacity: inView ? 1 : 0, x: inView ? 0 : initialX }}
         transition={{ duration: 1 }}
       >
         <Image
@@ -168,11 +168,11 @@ function Info({ planetsInfo, index }: PlanetsInfo & { index: number }) {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      setInitialX(window.innerWidth - 500);
+      setInitialX(window.innerWidth - 600);
     }
 
     const handleResize = () => {
-      setInitialX(window.innerWidth - 500);
+      setInitialX(window.innerWidth - 600);
     };
 
     window.addEventListener("resize", handleResize);
@@ -248,10 +248,10 @@ function Info({ planetsInfo, index }: PlanetsInfo & { index: number }) {
     <motion.div
       ref={ref}
       initial={{ opacity: 0, x: initialX }}
-      animate={{ opacity: inView ? 1 : 0, x: inView ? 200 : initialX }}
+      animate={{ opacity: inView ? 1 : 0, x: inView ? 1 : initialX }}
       transition={{ duration: 1 }}
     >
-      <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-blue-500 to-teal-500 transform scale-[0.80] bg-red-500 rounded-full blur-3xl " />
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-teal-500 transform scale-[0.8] bg-red-500 rounded-full blur-3xl " />
       <div className="relative shadow-xl bg-gray-900 border border-gray-800  px-4 py-8 h-full overflow-hidden rounded-2xl flex flex-col justify-end items-start max-w-4xl">
         <h1 className="font-bold text-xl text-white mb-4 relative z-50">
           {planetsInfo.name}
@@ -286,8 +286,8 @@ function Info({ planetsInfo, index }: PlanetsInfo & { index: number }) {
 
 export default function Planets() {
   return (
-    <div className="h-auto w-full flex justify-start items-center overflow-hidden">
-      <div className="flex flex-col items-center space-y-20 pt-5 pl-10">
+    <div className="h-auto w-full flex justify-start items-center overflow-hidden space-x-10">
+      <div className="flex flex-col items-center space-y-20 pt-5 px-10">
         {planets.map((planet, index) => (
           <Element name={planet.name} key={planet.name}>
             <div className="h-screen flex items-center">
@@ -296,7 +296,7 @@ export default function Planets() {
           </Element>
         ))}
       </div>
-      <div className="flex flex-col items-center space-y-20 pt-5">
+      <div className="flex flex-col items-center space-y-20 pt-5 pr-10">
         {planetsInfo.map((planetsInfo, index) => (
           <div className="h-screen flex items-center" key={planetsInfo.name}>
             <Info planetsInfo={planetsInfo} index={index} />
